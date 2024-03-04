@@ -39,14 +39,23 @@ android {
 }
 
 dependencies {
+    val navigation = "2.7.7"
+    val lifecycle_version = "2.7.0"
     val retrofit_version = "2.9.0"
 
+    // Navigation
+    implementation("androidx.navigation:navigation-fragment-ktx:$navigation")
+    implementation("androidx.navigation:navigation-ui-ktx:$navigation")
+    // ViewModel
+    implementation("androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version")
+    // LiveData
+    implementation("androidx.lifecycle:lifecycle-livedata-ktx:$lifecycle_version")
     //Retrofit
     implementation("com.squareup.retrofit2:retrofit:$retrofit_version")
     implementation("com.squareup.retrofit2:converter-gson:$retrofit_version")
     //Gson
     implementation("com.google.code.gson:gson:2.10.1")
-    implementation("androidx.core:core-ktx:1.9.0")
+    implementation("androidx.core:core-ktx:1.12.0")
     implementation("androidx.appcompat:appcompat:1.6.1")
     implementation("com.google.android.material:material:1.11.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
