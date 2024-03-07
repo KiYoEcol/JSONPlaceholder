@@ -2,5 +2,6 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="black80per">#50000000</color>
     <color name="post_list_body">#B3000000</color>
 </resources>
