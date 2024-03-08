@@ -21,6 +21,8 @@ class PostListFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentPostListBinding.inflate(inflater, container, false)
+        binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
         return binding.root
     }
 
@@ -28,24 +30,13 @@ class PostListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         viewModel.posts.observe(viewLifecycleOwner) {
             binding.recyclerViewPostList.apply {
-                when (it) {
-                    is Future.Proceeding -> {
-                        binding.containerProgress.visibility = View.VISIBLE
-                    }
-
-                    is Future.Success -> {
-                        adapter = PostListViewAdapter(viewLifecycleOwner, it.value)
-                        layoutManager =
-                            GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
-                        binding.containerProgress.visibility = View.GONE
-                    }
-
-                    is Future.Error -> {
-                        binding.containerProgress.visibility = View.GONE
-                        Toast.makeText(context, it.error.message, Toast.LENGTH_SHORT).show()
-                    }
-                }
+                adapter = PostListViewAdapter(viewLifecycleOwner, it)
+                layoutManager =
+                    GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
             }
+        }
+        viewModel.showErrorMessage.observe(viewLifecycleOwner) {
+            Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }
 
         viewModel.getPosts()

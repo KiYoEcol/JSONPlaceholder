@@ -12,12 +12,30 @@ import kotlinx.coroutines.launch
 
 class PostListViewModel : ViewModel() {
     private val repository = JSONPlaceholderRepository()
-    private val _posts = MutableLiveData<Future<List<PostModel>>>()
-    val posts: LiveData<Future<List<PostModel>>> = _posts
+    private val _posts = MutableLiveData<List<PostModel>>()
+    val posts: LiveData<List<PostModel>> = _posts
+    private val _isProceeding = MutableLiveData<Boolean>(true)
+    val isProceeding: LiveData<Boolean> = _isProceeding
+    private val _showErrorMessage = MutableLiveData<String>()
+    val showErrorMessage: LiveData<String> = _showErrorMessage
     fun getPosts() {
         viewModelScope.launch {
             repository.getPostsFlow().collectLatest {
-                _posts.postValue(it)
+                when (it) {
+                    is Future.Proceeding -> {
+                        _isProceeding.postValue(true)
+                    }
+
+                    is Future.Success -> {
+                        _isProceeding.postValue(false)
+                        _posts.postValue(it.value)
+                    }
+
+                    is Future.Error -> {
+                        _isProceeding.postValue(false)
+                        _showErrorMessage.postValue(it.error.message)
+                    }
+                }
             }
         }
     }
