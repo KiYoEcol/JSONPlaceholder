@@ -1,5 +1,6 @@
 package com.example.jsonplaceholder.repository
 
+import com.example.jsonplaceholder.model.AlbumModel
 import com.example.jsonplaceholder.network.JSONPlaceholderNetwork
 import com.example.jsonplaceholder.model.PostModel
 import com.example.jsonplaceholder.network.Future
@@ -29,5 +30,9 @@ class JSONPlaceholderRepository {
 
     suspend fun getPostsFlow(): Flow<Future<List<PostModel>>> {
         return apiFlow { JSONPlaceholderNetwork.service.getPosts() }
+    }
+
+    suspend fun getAlbumsFlow(): Flow<Future<List<AlbumModel>>> {
+        return apiFlow { JSONPlaceholderNetwork.service.getAlbums() }
     }
 }
