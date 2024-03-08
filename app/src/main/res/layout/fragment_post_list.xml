@@ -15,14 +15,12 @@
         android:layout_height="match_parent">
 
         <FrameLayout
-            android:id="@+id/container_progress"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black80per"
             android:visibility="@{viewModel.isProceeding() ? View.VISIBLE : View.GONE}">
 
             <ProgressBar
-                android:id="@+id/progressBar"
                 style="@android:style/Widget.Material.ProgressBar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
