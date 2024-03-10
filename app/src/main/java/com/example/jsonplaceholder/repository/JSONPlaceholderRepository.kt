@@ -3,6 +3,7 @@ package com.example.jsonplaceholder.repository
 import com.example.jsonplaceholder.model.AlbumModel
 import com.example.jsonplaceholder.network.JSONPlaceholderNetwork
 import com.example.jsonplaceholder.model.PostModel
+import com.example.jsonplaceholder.model.UserModel
 import com.example.jsonplaceholder.network.Future
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
@@ -32,7 +33,15 @@ class JSONPlaceholderRepository {
         return apiFlow { JSONPlaceholderNetwork.service.getPosts() }
     }
 
+    suspend fun getPostFlow(id: Int): Flow<Future<PostModel>> {
+        return apiFlow { JSONPlaceholderNetwork.service.getPost(id) }
+    }
+
     suspend fun getAlbumsFlow(): Flow<Future<List<AlbumModel>>> {
         return apiFlow { JSONPlaceholderNetwork.service.getAlbums() }
+    }
+
+    suspend fun getUserFlow(id: Int): Flow<Future<UserModel>> {
+        return apiFlow { JSONPlaceholderNetwork.service.getUser(id) }
     }
 }
