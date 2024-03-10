@@ -9,7 +9,6 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.GridLayoutManager
 import com.example.jsonplaceholder.databinding.FragmentPostListBinding
-import com.example.jsonplaceholder.network.Future
 import com.example.jsonplaceholder.viewmodel.PostListViewModel
 
 class PostListFragment : Fragment() {
