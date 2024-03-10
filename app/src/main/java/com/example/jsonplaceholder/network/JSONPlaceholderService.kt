@@ -1,6 +1,7 @@
 package com.example.jsonplaceholder.network
 
 import com.example.jsonplaceholder.model.AlbumModel
+import com.example.jsonplaceholder.model.CommentModel
 import com.example.jsonplaceholder.model.PostModel
 import com.example.jsonplaceholder.model.UserModel
 import retrofit2.Response
@@ -12,6 +13,9 @@ interface JSONPlaceholderService {
 
     @GET("posts/{id}")
     suspend fun getPost(id: Int): Response<PostModel>
+
+    @GET("comments?postId={postId}")
+    suspend fun getCommentsOnPost(postId: Int): Response<List<CommentModel>>
 
     @GET("albums")
     suspend fun getAlbums(): Response<List<AlbumModel>>
