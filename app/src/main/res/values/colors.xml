@@ -4,4 +4,5 @@
     <color name="white">#FFFFFFFF</color>
     <color name="black80per">#50000000</color>
     <color name="post_list_body">#B3000000</color>
+    <color name="link">@color/material_dynamic_primary50</color>
 </resources>
