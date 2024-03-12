@@ -3,20 +3,38 @@ package com.example.jsonplaceholder.view
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.lifecycle.LifecycleOwner
+import androidx.recyclerview.widget.DiffUtil
+import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.jsonplaceholder.databinding.ItemPostBinding
 import com.example.jsonplaceholder.model.PostModel
 
-class PostListViewAdapter(
+private object PostDiffCallback : DiffUtil.ItemCallback<PostModel>() {
+    override fun areItemsTheSame(oldItem: PostModel, newItem: PostModel): Boolean {
+        return oldItem.id == newItem.id
+    }
+
+    override fun areContentsTheSame(oldItem: PostModel, newItem: PostModel): Boolean {
+        return oldItem == newItem
+    }
+}
+
+class PostListAdapter(
     private val lifecycleOwner: LifecycleOwner,
-    private val posts: List<PostModel>
-) : RecyclerView.Adapter<PostListViewAdapter.PostListViewHolder>() {
+    private val onClickPost: (PostModel) -> Unit
+) : ListAdapter<PostModel, PostListAdapter.PostListViewHolder>(PostDiffCallback) {
     class PostListViewHolder(private val binding: ItemPostBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(post: PostModel, lifecycleOwner: LifecycleOwner) {
+        fun bind(
+            lifecycleOwner: LifecycleOwner,
+            post: PostModel,
+            onClickPost: (PostModel) -> Unit,
+        ) {
             binding.lifecycleOwner = lifecycleOwner
             binding.post = post
-            binding.cardView.setOnClickListener {  }
+            binding.container.setOnClickListener {
+                onClickPost.invoke(post)
+            }
         }
     }
 
@@ -26,12 +44,7 @@ class PostListViewAdapter(
         return PostListViewHolder(binding)
     }
 
-    override fun getItemCount(): Int {
-        return posts.size
-    }
-
     override fun onBindViewHolder(holder: PostListViewHolder, position: Int) {
-        val post = posts[position]
-        holder.bind(post, lifecycleOwner)
+        holder.bind(lifecycleOwner, getItem(position), onClickPost)
     }
 }

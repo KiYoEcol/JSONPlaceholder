@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jsonplaceholder.databinding.FragmentPostBinding
@@ -15,6 +16,7 @@ import com.example.jsonplaceholder.viewmodel.PostViewModel
 class PostFragment : Fragment() {
     private val viewModel: PostViewModel by viewModels()
     private lateinit var binding: FragmentPostBinding
+    private val args: PostFragmentArgs by navArgs()
     private lateinit var commentListAdapter: CommentListAdapter
 
     override fun onCreateView(
@@ -68,7 +70,6 @@ class PostFragment : Fragment() {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }
 
-        val postId = arguments?.getInt("postId") ?: 0
-        viewModel.fetch(postId)
+        viewModel.fetch(args.postId)
     }
 }
