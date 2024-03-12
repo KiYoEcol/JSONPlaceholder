@@ -23,9 +23,9 @@ class AlbumListAdapter(private val lifecycleOwner: LifecycleOwner) :
     ListAdapter<AlbumModel, AlbumListAdapter.AlbumListViewHolder>(AlbumDiffCallback) {
     class AlbumListViewHolder(private val binding: ItemAlumBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(lifecycleOwner: LifecycleOwner, model: AlbumModel) {
+        fun bind(lifecycleOwner: LifecycleOwner, album: AlbumModel) {
             binding.lifecycleOwner = lifecycleOwner
-            binding.model = model
+            binding.album = album
         }
     }
 
