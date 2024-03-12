@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.jsonplaceholder.databinding.ItemAlumBinding
 import com.example.jsonplaceholder.model.AlbumModel
 
-private object DiffCallback : DiffUtil.ItemCallback<AlbumModel>() {
+private object AlbumDiffCallback : DiffUtil.ItemCallback<AlbumModel>() {
     override fun areItemsTheSame(oldItem: AlbumModel, newItem: AlbumModel): Boolean {
         return oldItem.id == newItem.id
     }
@@ -20,7 +20,7 @@ private object DiffCallback : DiffUtil.ItemCallback<AlbumModel>() {
 }
 
 class AlbumListAdapter(private val lifecycleOwner: LifecycleOwner) :
-    ListAdapter<AlbumModel, AlbumListAdapter.AlbumListViewHolder>(DiffCallback) {
+    ListAdapter<AlbumModel, AlbumListAdapter.AlbumListViewHolder>(AlbumDiffCallback) {
     class AlbumListViewHolder(private val binding: ItemAlumBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(lifecycleOwner: LifecycleOwner, model: AlbumModel) {
