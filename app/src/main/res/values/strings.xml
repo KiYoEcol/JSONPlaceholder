@@ -2,4 +2,8 @@
     <string name="app_name">JSONPlaceholder</string>
     <string name="title_post_list">投稿一覧</string>
     <string name="title_album_list">アルバム一覧</string>
+    <string name="title_comment_list">コメント</string>
+    <string name="label_name">Name</string>
+    <string name="label_username">User Name</string>
+    <string name="label_email">Email</string>
 </resources>
