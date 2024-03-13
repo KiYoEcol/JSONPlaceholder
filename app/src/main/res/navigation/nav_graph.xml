@@ -7,18 +7,34 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.jsonplaceholder.view.HomeFragment"
-        android:label="HomeFragment" >
+        android:label="HomeFragment">
         <action
             android:id="@+id/action_homeFragment_to_postFragment"
             app:destination="@id/postFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_photoListFragment"
+            app:destination="@id/photoListFragment" />
     </fragment>
     <fragment
         android:id="@+id/postFragment"
         android:name="com.example.jsonplaceholder.view.PostFragment"
-        android:label="PostFragment" >
+        android:label="PostFragment">
         <argument
             android:name="postId"
-            app:argType="integer"
-            android:defaultValue="0" />
+            android:defaultValue="0"
+            app:argType="integer" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoListFragment"
+        android:name="com.example.jsonplaceholder.view.PhotoListFragment"
+        android:label="PhotoListFragment">
+        <argument
+            android:name="userId"
+            android:defaultValue="0"
+            app:argType="integer" />
+        <argument
+            android:name="albumId"
+            android:defaultValue="0"
+            app:argType="integer" />
     </fragment>
 </navigation>
