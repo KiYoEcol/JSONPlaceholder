@@ -3,6 +3,9 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("androidx.navigation.safeargs.kotlin")
 }
+apply {
+    plugin("kotlin-kapt")
+}
 
 android {
     namespace = "com.example.jsonplaceholder"
@@ -64,6 +67,8 @@ dependencies {
     implementation("androidx.viewpager2:viewpager2:1.0.0")
     // Material Design Component
     implementation("com.google.android.material:material:1.11.0")
+    // Glide
+    implementation("com.github.bumptech.glide:glide:4.16.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
