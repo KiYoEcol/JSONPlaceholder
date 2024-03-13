@@ -2,6 +2,7 @@ package com.example.jsonplaceholder.repository
 
 import com.example.jsonplaceholder.model.AlbumModel
 import com.example.jsonplaceholder.model.CommentModel
+import com.example.jsonplaceholder.model.PhotoModel
 import com.example.jsonplaceholder.network.JSONPlaceholderNetwork
 import com.example.jsonplaceholder.model.PostModel
 import com.example.jsonplaceholder.model.UserModel
@@ -44,6 +45,10 @@ class JSONPlaceholderRepository {
 
     suspend fun getAlbumsFlow(): Flow<Future<List<AlbumModel>>> {
         return apiFlow { JSONPlaceholderNetwork.service.getAlbums() }
+    }
+
+    suspend fun getPhotosOnAlbum(albumId: Int): Flow<Future<List<PhotoModel>>> {
+        return apiFlow { JSONPlaceholderNetwork.service.getPhotosOnAlbum(albumId) }
     }
 
     suspend fun getUserFlow(id: Int): Flow<Future<UserModel>> {
