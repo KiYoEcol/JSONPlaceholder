@@ -19,13 +19,21 @@ private object PhotoDiffCallback : DiffUtil.ItemCallback<PhotoModel>() {
     }
 }
 
-class PhotoListAdapter(private val lifecycleOwner: LifecycleOwner) :
+class PhotoListAdapter(
+    private val lifecycleOwner: LifecycleOwner,
+    private val onClickPhoto: (PhotoModel) -> Unit
+) :
     ListAdapter<PhotoModel, PhotoListAdapter.PhotoListViewHolder>(PhotoDiffCallback) {
     class PhotoListViewHolder(private val binding: ItemPhotoBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun bind(lifecycleOwner: LifecycleOwner, photo: PhotoModel) {
+        fun bind(
+            lifecycleOwner: LifecycleOwner,
+            photo: PhotoModel,
+            onClickPhoto: (PhotoModel) -> Unit
+        ) {
             binding.lifecycleOwner = lifecycleOwner
             binding.photo = photo
+            binding.container.setOnClickListener { onClickPhoto.invoke(photo) }
         }
     }
 
@@ -36,6 +44,6 @@ class PhotoListAdapter(private val lifecycleOwner: LifecycleOwner) :
     }
 
     override fun onBindViewHolder(holder: PhotoListViewHolder, position: Int) {
-        holder.bind(lifecycleOwner, getItem(position))
+        holder.bind(lifecycleOwner, getItem(position), onClickPhoto)
     }
 }

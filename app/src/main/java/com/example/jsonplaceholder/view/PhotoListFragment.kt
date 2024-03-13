@@ -7,10 +7,12 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.jsonplaceholder.databinding.FragmentPhotoListBinding
+import com.example.jsonplaceholder.model.PhotoModel
 import com.example.jsonplaceholder.viewmodel.PhotoListViewModel
 
 class PhotoListFragment : Fragment() {
@@ -27,7 +29,7 @@ class PhotoListFragment : Fragment() {
         binding = FragmentPhotoListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
 
-        photoListAdapter = PhotoListAdapter(viewLifecycleOwner)
+        photoListAdapter = PhotoListAdapter(viewLifecycleOwner) { onClickPhoto(it) }
         binding.recyclerViewPhotoList.apply {
             layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
             adapter = photoListAdapter
@@ -63,5 +65,14 @@ class PhotoListFragment : Fragment() {
 
         viewModel.getUser(args.userId)
         viewModel.getPhotosOnAlbum(args.albumId)
+    }
+
+    private fun onClickPhoto(photo: PhotoModel) {
+        val userId = viewModel.user.value?.id ?: 0
+        val action = PhotoListFragmentDirections.actionPhotoListFragmentToPhotoFragment(
+            userId = userId,
+            photoId = photo.id
+        )
+        findNavController().navigate(action)
     }
 }

@@ -36,5 +36,21 @@
             android:name="albumId"
             android:defaultValue="0"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_photoListFragment_to_photoFragment"
+            app:destination="@id/photoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/photoFragment"
+        android:name="com.example.jsonplaceholder.view.PhotoFragment"
+        android:label="PhotoFragment" >
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="0" />
+        <argument
+            android:name="photoId"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
 </navigation>
