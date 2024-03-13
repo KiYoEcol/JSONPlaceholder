@@ -26,6 +26,9 @@ interface JSONPlaceholderService {
     @GET("photos")
     suspend fun getPhotosOnAlbum(@Query("albumId") albumId: Int): Response<List<PhotoModel>>
 
+    @GET("photos/{id}")
+    suspend fun getPhoto(@Path("id") id: Int): Response<PhotoModel>
+
     @GET("users/{id}")
     suspend fun getUser(@Path("id") id: Int): Response<UserModel>
 }
