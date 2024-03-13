@@ -9,25 +9,25 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.example.jsonplaceholder.databinding.FragmentPostListBinding
+import com.example.jsonplaceholder.databinding.FragmentListBinding
 import com.example.jsonplaceholder.model.PostModel
 import com.example.jsonplaceholder.viewmodel.PostListViewModel
 
 class PostListFragment : Fragment() {
     private val viewModel: PostListViewModel by viewModels()
-    private lateinit var binding: FragmentPostListBinding
+    private lateinit var binding: FragmentListBinding
     private lateinit var postListAdapter: PostListAdapter
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentPostListBinding.inflate(inflater, container, false)
+        binding = FragmentListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
         postListAdapter = PostListAdapter(viewLifecycleOwner) { onClickPost(it) }
-        binding.recyclerViewPostList.apply {
+        binding.recyclerView.apply {
             adapter = postListAdapter
             layoutManager = GridLayoutManager(context, 2, GridLayoutManager.VERTICAL, false)
         }

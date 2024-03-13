@@ -9,11 +9,11 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.jsonplaceholder.databinding.FragmentAlbumListBinding
+import com.example.jsonplaceholder.databinding.FragmentListBinding
 import com.example.jsonplaceholder.viewmodel.AlbumListViewModel
 
 class AlbumListFragment : Fragment() {
-    private lateinit var binding: FragmentAlbumListBinding
+    private lateinit var binding: FragmentListBinding
     private val viewModel: AlbumListViewModel by viewModels()
     private lateinit var albumListAdapter: AlbumListAdapter
 
@@ -22,12 +22,12 @@ class AlbumListFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentAlbumListBinding.inflate(inflater, container, false)
+        binding = FragmentListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
 
         albumListAdapter = AlbumListAdapter(viewLifecycleOwner)
-        binding.recyclerViewAlbumList.apply {
+        binding.recyclerView.apply {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = albumListAdapter
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))

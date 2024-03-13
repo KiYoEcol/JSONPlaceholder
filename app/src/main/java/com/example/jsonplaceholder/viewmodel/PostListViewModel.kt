@@ -10,12 +10,10 @@ import com.example.jsonplaceholder.repository.JSONPlaceholderRepository
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 
-class PostListViewModel : ViewModel() {
+class PostListViewModel : ListViewModel() {
     private val repository = JSONPlaceholderRepository()
     private val _posts = MutableLiveData<List<PostModel>>()
     val posts: LiveData<List<PostModel>> = _posts
-    private val _isProceeding = MutableLiveData<Boolean>(true)
-    val isProceeding: LiveData<Boolean> = _isProceeding
     private val _showErrorMessage = MutableLiveData<String>()
     val showErrorMessage: LiveData<String> = _showErrorMessage
     fun getPosts() {
