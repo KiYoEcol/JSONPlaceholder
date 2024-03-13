@@ -2,7 +2,6 @@ package com.example.jsonplaceholder.viewmodel
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.jsonplaceholder.model.AlbumModel
 import com.example.jsonplaceholder.network.Future
@@ -14,8 +13,6 @@ class AlbumListViewModel : ListViewModel() {
     private val repository = JSONPlaceholderRepository()
     private val _albums = MutableLiveData<List<AlbumModel>>()
     val albums: LiveData<List<AlbumModel>> = _albums
-    private val _showErrorMessage = MutableLiveData<String>()
-    val showErrorMessage: LiveData<String> = _showErrorMessage
     fun getAlbums() {
         viewModelScope.launch {
             repository.getAlbumsFlow().collectLatest {
