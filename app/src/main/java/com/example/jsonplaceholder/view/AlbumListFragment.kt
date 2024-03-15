@@ -46,14 +46,23 @@ class AlbumListFragment : Fragment() {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }
 
-        viewModel.getAlbums()
+        val userId = arguments?.getInt("userId", -1) ?: -1
+        if (userId == -1) viewModel.getAlbums() else viewModel.getAlbumsOnUser(userId)
     }
 
     private fun onClickAlbum(album: AlbumModel) {
-        val action = HomeFragmentDirections.actionHomeFragmentToPhotoListFragment(
-            userId = album.userId,
-            albumId = album.id
-        )
+        val userId = arguments?.getInt("userId", -1) ?: -1
+        val action = if (userId == -1) {
+            HomeFragmentDirections.actionHomeFragmentToPhotoListFragment(
+                userId = album.userId,
+                albumId = album.id
+            )
+        } else {
+            UserFragmentDirections.actionUserFragmentToPhotoListFragment(
+                userId = userId,
+                albumId = album.id
+            )
+        }
         findNavController().navigate(action)
     }
 }

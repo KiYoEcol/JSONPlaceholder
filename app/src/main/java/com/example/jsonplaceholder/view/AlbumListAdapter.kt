@@ -22,8 +22,7 @@ private object AlbumDiffCallback : DiffUtil.ItemCallback<AlbumModel>() {
 class AlbumListAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val onClickAlbum: (AlbumModel) -> Unit
-) :
-    ListAdapter<AlbumModel, AlbumListAdapter.AlbumListViewHolder>(AlbumDiffCallback) {
+) : ListAdapter<AlbumModel, AlbumListAdapter.AlbumListViewHolder>(AlbumDiffCallback) {
     class AlbumListViewHolder(private val binding: ItemAlbumBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(

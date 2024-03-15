@@ -43,11 +43,17 @@ class PostListFragment : Fragment() {
             Toast.makeText(context, it, Toast.LENGTH_SHORT).show()
         }
 
-        viewModel.getPosts()
+        val userId = arguments?.getInt("userId", -1) ?: -1
+        if (userId == -1) viewModel.getPosts() else viewModel.getPostsOnUser(userId)
     }
 
     private fun onClickPost(post: PostModel) {
-        val action = HomeFragmentDirections.actionHomeFragmentToPostFragment(post.id)
+        val userId = arguments?.getInt("userId", -1) ?: -1
+        val action = if (userId == -1) {
+            HomeFragmentDirections.actionHomeFragmentToPostFragment(post.id)
+        } else {
+            UserFragmentDirections.actionUserFragmentToPostFragment(post.id)
+        }
         findNavController().navigate(action)
     }
 }

@@ -17,10 +17,26 @@ class PostListViewModel : ListViewModel() {
         viewModelScope.launch {
             repository.getPostsFlow().collectLatest {
                 when (it) {
-                    is Future.Proceeding -> {
-                        _isProceeding.postValue(true)
+                    is Future.Proceeding -> _isProceeding.postValue(true)
+                    is Future.Success -> {
+                        _isProceeding.postValue(false)
+                        _posts.postValue(it.value)
                     }
 
+                    is Future.Error -> {
+                        _isProceeding.postValue(false)
+                        _showErrorMessage.postValue(it.error.message)
+                    }
+                }
+            }
+        }
+    }
+
+    fun getPostsOnUser(userId: Int) {
+        viewModelScope.launch {
+            repository.getPostsOnUserFlow(userId).collectLatest {
+                when (it) {
+                    is Future.Proceeding -> _isProceeding.postValue(true)
                     is Future.Success -> {
                         _isProceeding.postValue(false)
                         _posts.postValue(it.value)

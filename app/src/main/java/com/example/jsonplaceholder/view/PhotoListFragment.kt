@@ -34,6 +34,12 @@ class PhotoListFragment : Fragment() {
             layoutManager = GridLayoutManager(context, 2, LinearLayoutManager.VERTICAL, false)
             adapter = photoListAdapter
         }
+
+        binding.containerUser.setOnClickListener {
+            val userId = viewModel.user.value?.id ?: -1
+            val action = PhotoListFragmentDirections.actionPhotoListFragmentToUserFragment(userId)
+            findNavController().navigate(action)
+        }
         return binding.root
     }
 

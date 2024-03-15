@@ -22,8 +22,7 @@ private object PhotoDiffCallback : DiffUtil.ItemCallback<PhotoModel>() {
 class PhotoListAdapter(
     private val lifecycleOwner: LifecycleOwner,
     private val onClickPhoto: (PhotoModel) -> Unit
-) :
-    ListAdapter<PhotoModel, PhotoListAdapter.PhotoListViewHolder>(PhotoDiffCallback) {
+) : ListAdapter<PhotoModel, PhotoListAdapter.PhotoListViewHolder>(PhotoDiffCallback) {
     class PhotoListViewHolder(private val binding: ItemPhotoBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(

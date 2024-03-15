@@ -31,4 +31,23 @@ class AlbumListViewModel : ListViewModel() {
             }
         }
     }
+
+    fun getAlbumsOnUser(userId: Int) {
+        viewModelScope.launch {
+            repository.getAlbumsOnUserFlow(userId).collectLatest {
+                when (it) {
+                    is Future.Proceeding -> _isProceeding.postValue(true)
+                    is Future.Success -> {
+                        _isProceeding.postValue(false)
+                        _albums.postValue(it.value)
+                    }
+
+                    is Future.Error -> {
+                        _isProceeding.postValue(false)
+                        _showErrorMessage.postValue(it.error.message)
+                    }
+                }
+            }
+        }
+    }
 }

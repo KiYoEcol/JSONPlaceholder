@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -33,6 +34,12 @@ class PostFragment : Fragment() {
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
             adapter = commentListAdapter
             addItemDecoration(DividerItemDecoration(context, LinearLayoutManager.VERTICAL))
+        }
+
+        binding.containerUser.setOnClickListener {
+            val userId = viewModel.user.value?.id ?: -1
+            val action = PostFragmentDirections.actionPostFragmentToUserFragment(userId)
+            findNavController().navigate(action)
         }
         return binding.root
     }
