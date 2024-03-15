@@ -3,7 +3,21 @@
     <string name="title_post_list">投稿一覧</string>
     <string name="title_album_list">アルバム一覧</string>
     <string name="title_comment_list">コメント</string>
+    <string name="title_user_detail">ユーザー詳細</string>
+    <string name="title_todo_list">Todo一覧</string>
     <string name="label_name">Name</string>
     <string name="label_username">User Name</string>
     <string name="label_email">Email</string>
+    <string name="label_address">住所</string>
+    <string name="label_street">通り</string>
+    <string name="label_suite">アパート</string>
+    <string name="label_city">市</string>
+    <string name="label_zipcode">郵便番号</string>
+    <string name="label_geo">地点</string>
+    <string name="label_phone">電話番号</string>
+    <string name="label_website">ウェブサイト</string>
+    <string name="label_company">会社</string>
+    <string name="label_company_name">名前</string>
+    <string name="label_catch_phrase">キャッチフレーズ</string>
+    <string name="label_business_services">業務</string>
 </resources>
