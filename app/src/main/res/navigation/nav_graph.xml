@@ -23,6 +23,9 @@
             android:name="postId"
             android:defaultValue="0"
             app:argType="integer" />
+        <action
+            android:id="@+id/action_postFragment_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
     <fragment
         android:id="@+id/photoListFragment"
@@ -39,6 +42,9 @@
         <action
             android:id="@+id/action_photoListFragment_to_photoFragment"
             app:destination="@id/photoFragment" />
+        <action
+            android:id="@+id/action_photoListFragment_to_userFragment"
+            app:destination="@id/userFragment" />
     </fragment>
     <fragment
         android:id="@+id/photoFragment"
@@ -52,5 +58,23 @@
             android:name="photoId"
             app:argType="integer"
             android:defaultValue="0" />
+        <action
+            android:id="@+id/action_photoFragment_to_userFragment"
+            app:destination="@id/userFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/userFragment"
+        android:name="com.example.jsonplaceholder.view.UserFragment"
+        android:label="UserFragment" >
+        <argument
+            android:name="userId"
+            app:argType="integer"
+            android:defaultValue="-1" />
+        <action
+            android:id="@+id/action_userFragment_to_postFragment"
+            app:destination="@id/postFragment" />
+        <action
+            android:id="@+id/action_userFragment_to_photoListFragment"
+            app:destination="@id/photoListFragment" />
     </fragment>
 </navigation>
