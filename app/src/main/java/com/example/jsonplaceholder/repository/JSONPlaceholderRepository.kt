@@ -5,6 +5,7 @@ import com.example.jsonplaceholder.model.CommentModel
 import com.example.jsonplaceholder.model.PhotoModel
 import com.example.jsonplaceholder.network.JSONPlaceholderNetwork
 import com.example.jsonplaceholder.model.PostModel
+import com.example.jsonplaceholder.model.TodoModel
 import com.example.jsonplaceholder.model.UserModel
 import com.example.jsonplaceholder.network.Future
 import kotlinx.coroutines.Dispatchers
@@ -35,6 +36,10 @@ class JSONPlaceholderRepository {
         return apiFlow { JSONPlaceholderNetwork.service.getPosts() }
     }
 
+    suspend fun getPostsOnUserFlow(userId: Int): Flow<Future<List<PostModel>>> {
+        return apiFlow { JSONPlaceholderNetwork.service.getPostsOnUser(userId) }
+    }
+
     suspend fun getPostFlow(id: Int): Flow<Future<PostModel>> {
         return apiFlow { JSONPlaceholderNetwork.service.getPost(id) }
     }
@@ -47,6 +52,10 @@ class JSONPlaceholderRepository {
         return apiFlow { JSONPlaceholderNetwork.service.getAlbums() }
     }
 
+    suspend fun getAlbumsOnUserFlow(userId: Int): Flow<Future<List<AlbumModel>>> {
+        return apiFlow { JSONPlaceholderNetwork.service.getAlbumsOnUser(userId) }
+    }
+
     suspend fun getPhotosOnAlbum(albumId: Int): Flow<Future<List<PhotoModel>>> {
         return apiFlow { JSONPlaceholderNetwork.service.getPhotosOnAlbum(albumId) }
     }
@@ -57,5 +66,9 @@ class JSONPlaceholderRepository {
 
     suspend fun getUserFlow(id: Int): Flow<Future<UserModel>> {
         return apiFlow { JSONPlaceholderNetwork.service.getUser(id) }
+    }
+
+    suspend fun getTodosOnUser(userId: Int): Flow<Future<List<TodoModel>>> {
+        return apiFlow { JSONPlaceholderNetwork.service.getTodosOnUser(userId) }
     }
 }
