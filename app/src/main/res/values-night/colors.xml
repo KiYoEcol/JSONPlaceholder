@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="text_body">@color/white50per</color>
+    <color name="check_true">@color/white</color>
+    <color name="check_false">@color/white20per</color>
+</resources>
