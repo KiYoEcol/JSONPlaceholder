@@ -56,6 +56,10 @@ class JSONPlaceholderRepository {
         return apiFlow { JSONPlaceholderNetwork.service.getAlbumsOnUser(userId) }
     }
 
+    suspend fun getAlbumFlow(albumId: Int): Flow<Future<AlbumModel>> {
+        return apiFlow { JSONPlaceholderNetwork.service.getAlbum(albumId) }
+    }
+
     suspend fun getPhotosOnAlbum(albumId: Int): Flow<Future<List<PhotoModel>>> {
         return apiFlow { JSONPlaceholderNetwork.service.getPhotosOnAlbum(albumId) }
     }

@@ -30,6 +30,9 @@ interface JSONPlaceholderService {
     @GET("albums")
     suspend fun getAlbumsOnUser(@Query("userId") userId: Int): Response<List<AlbumModel>>
 
+    @GET("albums/{id}")
+    suspend fun getAlbum(@Path("id") albumId: Int): Response<AlbumModel>
+
     @GET("photos")
     suspend fun getPhotosOnAlbum(@Query("albumId") albumId: Int): Response<List<PhotoModel>>
 
@@ -40,5 +43,5 @@ interface JSONPlaceholderService {
     suspend fun getUser(@Path("id") id: Int): Response<UserModel>
 
     @GET("todos")
-    suspend fun getTodosOnUser(@Query("userId")userId: Int): Response<List<TodoModel>>
+    suspend fun getTodosOnUser(@Query("userId") userId: Int): Response<List<TodoModel>>
 }

@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.jsonplaceholder.model.AlbumModel
 import com.example.jsonplaceholder.model.PhotoModel
 import com.example.jsonplaceholder.model.UserModel
 import com.example.jsonplaceholder.network.Future
@@ -17,6 +18,10 @@ class PhotoListViewModel : ViewModel() {
     val user: LiveData<UserModel> = _user
     private val _isProceedingUser = MutableLiveData<Boolean>()
     val isProceedingUser: LiveData<Boolean> = _isProceedingUser
+    private val _album = MutableLiveData<AlbumModel>()
+    val album: LiveData<AlbumModel> = _album
+    private val _isProceedingAlbum = MutableLiveData<Boolean>()
+    val isProceedingAlbum: LiveData<Boolean> = _isProceedingAlbum
     private val _photos = MutableLiveData<List<PhotoModel>>()
     val photos: LiveData<List<PhotoModel>> = _photos
     private val _isProceedingPhotos = MutableLiveData<Boolean>()
@@ -36,6 +41,25 @@ class PhotoListViewModel : ViewModel() {
 
                     is Future.Error -> {
                         _isProceedingUser.postValue(false)
+                        _showErrorMessage.postValue(it.error.message)
+                    }
+                }
+            }
+        }
+    }
+
+    fun getAlbum(albumId: Int) {
+        viewModelScope.launch {
+            repository.getAlbumFlow(albumId).collectLatest {
+                when (it) {
+                    is Future.Proceeding -> _isProceedingAlbum.postValue(true)
+                    is Future.Success -> {
+                        _isProceedingAlbum.postValue(false)
+                        _album.postValue(it.value)
+                    }
+
+                    is Future.Error -> {
+                        _isProceedingAlbum.postValue(false)
                         _showErrorMessage.postValue(it.error.message)
                     }
                 }

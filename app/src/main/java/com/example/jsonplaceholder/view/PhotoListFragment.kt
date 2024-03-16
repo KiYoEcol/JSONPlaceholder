@@ -28,6 +28,7 @@ class PhotoListFragment : Fragment() {
     ): View {
         binding = FragmentPhotoListBinding.inflate(inflater, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
 
         photoListAdapter = PhotoListAdapter(viewLifecycleOwner) { onClickPhoto(it) }
         binding.recyclerViewPhotoList.apply {
@@ -51,17 +52,24 @@ class PhotoListFragment : Fragment() {
         viewModel.isProceedingUser.observe(viewLifecycleOwner) {
             if (it) {
                 binding.containerProgress.visibility = View.VISIBLE
-            } else if (viewModel.isProceedingPhotos.value == false) {
+            } else if (viewModel.isProceedingAlbum.value == false && viewModel.isProceedingPhotos.value == false) {
                 binding.containerProgress.visibility = View.GONE
             }
         }
         viewModel.photos.observe(viewLifecycleOwner) {
             photoListAdapter.submitList(it)
         }
+        viewModel.isProceedingAlbum.observe(viewLifecycleOwner) {
+            if (it) {
+                binding.containerProgress.visibility = View.VISIBLE
+            } else if (viewModel.isProceedingUser.value == false && viewModel.isProceedingPhotos.value == false) {
+                binding.containerProgress.visibility = View.GONE
+            }
+        }
         viewModel.isProceedingPhotos.observe(viewLifecycleOwner) {
             if (it) {
                 binding.containerProgress.visibility = View.VISIBLE
-            } else if (viewModel.isProceedingUser.value == false) {
+            } else if (viewModel.isProceedingUser.value == false && viewModel.isProceedingAlbum.value == false) {
                 binding.containerProgress.visibility = View.GONE
             }
         }
@@ -70,6 +78,7 @@ class PhotoListFragment : Fragment() {
         }
 
         viewModel.getUser(args.userId)
+        viewModel.getAlbum(args.albumId)
         viewModel.getPhotosOnAlbum(args.albumId)
     }
 

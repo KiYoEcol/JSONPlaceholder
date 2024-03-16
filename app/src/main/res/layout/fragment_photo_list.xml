@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.jsonplaceholder.viewmodel.PhotoListViewModel" />
 
         <variable
             name="user"
@@ -17,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/black80per"
-            android:elevation="1dp">
+            android:elevation="1dp"
+            tools:visibility="gone">
 
             <ProgressBar
                 style="?android:attr/progressBarStyle"
@@ -46,11 +52,22 @@
                         app:user="@{user}" />
                 </com.google.android.material.card.MaterialCardView>
 
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="12dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="4dp"
+                    android:text="@{viewModel.album.title}"
+                    android:textSize="@dimen/titleSizeLarge"
+                    android:textStyle="bold"
+                    tools:text="accusamus beatae ad facilis cum similique qui sunt" />
+
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerViewPhotoList"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
+                    android:layout_marginTop="6dp"
                     android:nestedScrollingEnabled="false" />
             </LinearLayout>
         </androidx.core.widget.NestedScrollView>
