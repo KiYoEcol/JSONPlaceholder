@@ -46,7 +46,7 @@
                     android:ellipsize="end"
                     android:lines="4"
                     android:text="@{post.body}"
-                    android:textColor="@color/post_list_body"
+                    android:textColor="@color/text_body"
                     tools:text="quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto" />
             </LinearLayout>
         </com.google.android.material.card.MaterialCardView>

@@ -68,6 +68,7 @@
                     android:layout_marginHorizontal="12dp"
                     android:layout_marginBottom="8dp"
                     android:text="@{viewModel.post.body}"
+                    android:textColor="@color/text_body"
                     android:textSize="@dimen/bodySizeLarge"
                     tools:text="quia et suscipit\nsuscipit recusandae consequuntur expedita et cum\nreprehenderit molestiae ut ut quas totam\nnostrum rerum est autem sunt rem eveniet architecto" />
 

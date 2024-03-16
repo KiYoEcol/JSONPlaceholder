@@ -72,6 +72,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:text="@{viewModel.user.address.street}"
+                            android:textColor="@color/text_body"
                             tools:text="Hoeger Mall" />
 
                         <TextView
@@ -86,6 +87,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:text="@{viewModel.user.address.suite}"
+                            android:textColor="@color/text_body"
                             tools:text="Apt. 692" />
 
                         <TextView
@@ -100,6 +102,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:text="@{viewModel.user.address.city}"
+                            android:textColor="@color/text_body"
                             tools:text="South Elvis" />
 
                         <TextView
@@ -114,6 +117,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:text="@{viewModel.user.address.zipcode}"
+                            android:textColor="@color/text_body"
                             tools:text="53919-4257" />
                     </LinearLayout>
                 </LinearLayout>
@@ -182,6 +186,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:text="@{viewModel.user.company.name}"
+                            android:textColor="@color/text_body"
                             tools:text="Robel-Corkery" />
 
                         <TextView
@@ -196,6 +201,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:text="@{viewModel.user.company.catchPhrase}"
+                            android:textColor="@color/text_body"
                             tools:text="Multi-tiered zero tolerance productivity" />
 
                         <TextView
@@ -210,6 +216,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
                             android:text="@{viewModel.user.company.bs}"
+                            android:textColor="@color/text_body"
                             tools:text="transition cutting-edge web services" />
                     </LinearLayout>
                 </LinearLayout>

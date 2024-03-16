@@ -45,6 +45,7 @@
             android:layout_marginStart="16dp"
             android:layout_marginTop="4dp"
             android:text="@{comment.body}"
+            android:textColor="@color/text_body"
             tools:text="laudantium enim quasi est quidem magnam voluptate ipsam eos\ntempora quo necessitatibus\ndolor quam autem quasi\nreiciendis et nam sapiente accusantium" />
     </LinearLayout>
 </layout>

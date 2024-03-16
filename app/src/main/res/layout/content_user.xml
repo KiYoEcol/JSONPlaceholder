@@ -28,6 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@{user.name}"
+            android:textColor="@color/text_body"
             tools:text="Leanne Graham" />
 
         <TextView
@@ -42,6 +43,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@{user.username}"
+            android:textColor="@color/text_body"
             tools:text="Bret" />
 
         <TextView
@@ -56,6 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
             android:text="@{user.email}"
+            android:textColor="@color/link"
             tools:text="Sincere@april.biz" />
     </LinearLayout>
 </layout>
