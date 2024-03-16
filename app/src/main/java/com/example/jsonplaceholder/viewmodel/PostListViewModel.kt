@@ -20,7 +20,7 @@ class PostListViewModel : ListViewModel() {
                     is Future.Proceeding -> _isProceeding.postValue(true)
                     is Future.Success -> {
                         _isProceeding.postValue(false)
-                        _posts.postValue(it.value)
+                        this@PostListViewModel._posts.postValue(it.value)
                     }
 
                     is Future.Error -> {
@@ -39,7 +39,7 @@ class PostListViewModel : ListViewModel() {
                     is Future.Proceeding -> _isProceeding.postValue(true)
                     is Future.Success -> {
                         _isProceeding.postValue(false)
-                        _posts.postValue(it.value)
+                        this@PostListViewModel._posts.postValue(it.value)
                     }
 
                     is Future.Error -> {

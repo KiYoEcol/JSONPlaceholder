@@ -34,7 +34,7 @@ class PhotoViewModel : ViewModel() {
 
                     is Future.Success -> {
                         _isProceedingUser.postValue(false)
-                        _user.postValue(it.value)
+                        this@PhotoViewModel._user.postValue(it.value)
                     }
 
                     is Future.Error -> {
@@ -53,7 +53,7 @@ class PhotoViewModel : ViewModel() {
                     is Future.Proceeding -> _isProceedingPhoto.postValue(true)
                     is Future.Success -> {
                         _isProceedingPhoto.postValue(false)
-                        _photo.postValue(it.value)
+                        this@PhotoViewModel._photo.postValue(it.value)
                     }
 
                     is Future.Error -> {

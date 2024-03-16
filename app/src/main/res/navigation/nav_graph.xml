@@ -20,7 +20,7 @@
         android:name="com.example.jsonplaceholder.view.PostFragment"
         android:label="PostFragment">
         <argument
-            android:name="postId"
+            android:name="paostId"
             android:defaultValue="0"
             app:argType="integer" />
         <action

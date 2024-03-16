@@ -21,7 +21,7 @@ class TodoListViewModel : ListViewModel() {
                     is Future.Proceeding -> _isProceeding.postValue(true)
                     is Future.Success -> {
                         _isProceeding.postValue(false)
-                        _todos.postValue(it.value)
+                        this@TodoListViewModel._todos.postValue(it.value)
                     }
 
                     is Future.Error -> {

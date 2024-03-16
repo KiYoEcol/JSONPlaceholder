@@ -20,7 +20,7 @@ class AlbumListViewModel : ListViewModel() {
                     is Future.Proceeding -> _isProceeding.postValue(true)
                     is Future.Success -> {
                         _isProceeding.postValue(false)
-                        _albums.postValue(it.value)
+                        this@AlbumListViewModel._albums.postValue(it.value)
                     }
 
                     is Future.Error -> {
@@ -39,7 +39,7 @@ class AlbumListViewModel : ListViewModel() {
                     is Future.Proceeding -> _isProceeding.postValue(true)
                     is Future.Success -> {
                         _isProceeding.postValue(false)
-                        _albums.postValue(it.value)
+                        this@AlbumListViewModel._albums.postValue(it.value)
                     }
 
                     is Future.Error -> {

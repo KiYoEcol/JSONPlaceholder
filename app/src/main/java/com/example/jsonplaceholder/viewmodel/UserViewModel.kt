@@ -26,7 +26,7 @@ class UserViewModel : ViewModel() {
                     is Future.Proceeding -> _isProceeding.postValue(true)
                     is Future.Success -> {
                         _isProceeding.postValue(false)
-                        _user.postValue(it.value)
+                        this@UserViewModel._user.postValue(it.value)
                     }
 
                     is Future.Error -> {

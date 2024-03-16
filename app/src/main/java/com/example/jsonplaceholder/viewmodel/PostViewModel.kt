@@ -36,7 +36,7 @@ class PostViewModel : ViewModel() {
                     is Future.Proceeding -> _isProceedingPost.postValue(true)
                     is Future.Success -> {
                         _isProceedingPost.postValue(false)
-                        _post.postValue(it.value)
+                        this@PostViewModel._post.postValue(it.value)
                         getUser(it.value.userId)
                     }
 
@@ -57,7 +57,7 @@ class PostViewModel : ViewModel() {
                     is Future.Proceeding -> _isProceedingUser.postValue(true)
                     is Future.Success -> {
                         _isProceedingUser.postValue(false)
-                        _user.postValue(it.value)
+                        this@PostViewModel._user.postValue(it.value)
                     }
 
                     is Future.Error -> {
@@ -76,7 +76,7 @@ class PostViewModel : ViewModel() {
                     is Future.Proceeding -> _isProceedingComments.postValue(true)
                     is Future.Success -> {
                         _isProceedingComments.postValue(false)
-                        _comments.postValue(it.value)
+                        this@PostViewModel._comments.postValue(it.value)
                     }
 
                     is Future.Error -> {

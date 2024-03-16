@@ -36,7 +36,7 @@ class PhotoListViewModel : ViewModel() {
                     is Future.Proceeding -> _isProceedingUser.postValue(true)
                     is Future.Success -> {
                         _isProceedingUser.postValue(false)
-                        _user.postValue(it.value)
+                        this@PhotoListViewModel._user.postValue(it.value)
                     }
 
                     is Future.Error -> {
@@ -55,7 +55,7 @@ class PhotoListViewModel : ViewModel() {
                     is Future.Proceeding -> _isProceedingAlbum.postValue(true)
                     is Future.Success -> {
                         _isProceedingAlbum.postValue(false)
-                        _album.postValue(it.value)
+                        this@PhotoListViewModel._album.postValue(it.value)
                     }
 
                     is Future.Error -> {
@@ -74,7 +74,7 @@ class PhotoListViewModel : ViewModel() {
                     is Future.Proceeding -> _isProceedingPhotos.postValue(true)
                     is Future.Success -> {
                         _isProceedingPhotos.postValue(false)
-                        _photos.postValue(it.value)
+                        this@PhotoListViewModel._photos.postValue(it.value)
                     }
 
                     is Future.Error -> {
